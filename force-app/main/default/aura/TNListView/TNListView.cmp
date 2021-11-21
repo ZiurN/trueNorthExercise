@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:lightningQuickAction"
+                 access="global">
+    <aura:attribute name="carTypeList" type="TNCarType__C[]"/>
+    <aura:attribute name="pageRefresh" type="boolean" default="true" />
+    <aura:registerEvent name="refreshEvent" type="c:TNRefreshEvent"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div>
+        <div>Car List</div>
+    </div>
+    <div class= "slds-scrollable_y" style="height:55rem">
+        <aura:iteration items="{!v.carTypeList}" var="carType" >
+            <div class="slds-grid" >
+                <div class="slds-col slds-size_1-of-4">
+                    <ui:outputRichText value="{!carType.TNCarBrand__c}"/>
+                </div>
+                <div class="slds-col slds-size_2-of-4">
+                    <lightning:button variant="base" label="{!carType.TNModel__c}" value="{!carType.Id}" title="{!carType.TNModel}" onclick="{! c.handleClick }"/>
+                </div>
+            </div>
+        </aura:iteration>
+    </div>
+</aura:component>

@@ -1,0 +1,24 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:lightningQuickAction,force:hasRecordId" 
+                access="global">
+    <aura:attribute name="carId" type="String" default="" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div>
+        <lightning:recordViewForm recordId="{!v.carId}"
+                                  objectApiName="TNCarType__c">
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-8">
+                        <lightning:outputField fieldName="TNCarBrand__c" />
+                </div>
+                <div class="slds-col slds-size_1-of-8">
+                    <lightning:outputField fieldName="TNModel__c" />
+                </div>
+                 <div class="slds-col slds-size_1-of-8">
+                    <lightning:outputField fieldName="TNBodyStyle__c" />
+                </div>
+                 <div class="slds-col slds-size_1-of-8">
+                    <lightning:outputField fieldName="TNCountry__c" />
+                </div>
+            </div>
+        </lightning:recordViewForm>
+    </div>
+</aura:component>
