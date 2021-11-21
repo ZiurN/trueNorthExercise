@@ -149,18 +149,18 @@
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
-    <label>TN Car Type</label>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <label>TN Car</label>
     <nameField>
-        <displayFormat>TNCT-{000000}</displayFormat>
-        <label>TN Car Type Number</label>
+        <displayFormat>TNC-{0000}</displayFormat>
+        <label>TN Car</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>TN Car Types</pluralLabel>
+    <pluralLabel>TN Cars</pluralLabel>
     <searchLayouts></searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

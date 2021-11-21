@@ -149,17 +149,17 @@
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>TN Car Type</label>
+    <label>TN Car Sales</label>
     <nameField>
-        <displayFormat>TNCT-{000000}</displayFormat>
-        <label>TN Car Type Number</label>
+        <displayFormat>TNCS-{0000}</displayFormat>
+        <label>TN Car Sales Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>TN Car Types</pluralLabel>
+    <pluralLabel>TN Car Sales</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

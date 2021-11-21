@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TNModel__c</fullName>
+    <fullName>TNMake__c</fullName>
     <externalId>false</externalId>
-    <label>TN Model</label>
-    <length>200</length>
+    <formula>TEXT(TNCar__r.TNCarType__r.TNCarBrand__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>TN Make</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>

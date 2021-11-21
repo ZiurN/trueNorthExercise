@@ -2,8 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TNModel__c</fullName>
     <externalId>false</externalId>
+    <formula>TNCar__r.TNCarType__r.TNModel__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>TN Model</label>
-    <length>200</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>

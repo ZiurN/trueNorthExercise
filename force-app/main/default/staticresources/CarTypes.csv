@@ -1,4 +1,4 @@
-CarTypeId,CarBand,Model,BodyStyle
+CarTypeId,CarBrand,Model,BodyStyle
 1,Acura,ILX,Sedan
 2,Acura,MDX,SUV
 3,Alfa Romeo,4C Spider,Convertible
