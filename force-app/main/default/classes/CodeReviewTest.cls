@@ -8,8 +8,8 @@ public with sharing class CodeReviewTest {
 	private static TNController.DataFromCarType comparator2;
 	private static String carType1Id;
 	private static String carType2Id;
-    @TestSetup
-	static void makeData() {
+	private static String carType3Id;
+	static {
 		List<TNCarType__c> carTypes = new List<TNCarType__c>();
 		for (Integer i = 0; i < 2; i++) {
 			TNCarType__c carType= new TNCarType__c (
@@ -37,25 +37,44 @@ public with sharing class CodeReviewTest {
 		for (Integer i = 0; i < 50; i++) {
 			TNCarSales__c sale = new TNCarSales__c (
 				TNCar__c = i < 10 ? cars[i].Id : cars[Math.mod(i, 10)].Id,
-				TNPrice__c = 90000*Math.random() + 10000,
+				TNPrice__c = Math.roundToLong(90000*Math.random() + 10000),
 				TNDate__c = getRandomDate()
 			);
 			sales.add(sale);
 		}
 		insert sales;
-		sales = [SELECT TNType__c, TNDate__c, TNPrice__c, TNCarLicence__c FROM TNCarSales__c];
+		sales = [SELECT TNType__c, TNDate__c, TNPrice__c, TNCarType__c, TNCarLicence__c FROM TNCarSales__c];
 		List<TNCarSales__c> toCompare1 = new List<TNCarSales__c>();
 		List<TNCarSales__c> toCompare2 = new List<TNCarSales__c>();
 		for (TNCarSales__c sale : sales) {
-			if (sale.TNType__c == '1') {toCompare1.add(sale);}
+			if (sale.TNCarType__c == '1') {toCompare1.add(sale);}
 			else {toCompare2.add(sale);}
 		}
 		comparator1 = new TNController.DataFromCarType(toCompare1);
 		comparator2 = new TNController.DataFromCarType(toCompare2);
+		TNCarType__c carTypeWithNoData = new TNCarType__c (
+			externalId__c = '3',
+			TNBodyStyle__c = bodyStyles[0],
+			TNCarBrand__c = brands[0],
+			TNModel__c = models[0]
+		);
+		insert carTypeWithNoData;
+		carType3Id = carTypeWithNoData.Id;
+	}
+	@isTest
+	private static void returnCarTypesListtoBtns () {
+		List<TNCarType__c> carTypes = [SELECT TNBodyStyle__c, TNCarBrand__c, TNModel__c FROM TNCarType__c];
+		System.assertEquals(3, carTypes.size(), 'It should be 2 car types');
+		carTypes = TNController.getCarTypes();
+		System.assertEquals(3, carTypes.size(), 'It should be 2 car types');
 	}
 	@isTest
 	private static void returnDataFromType1 () {
 		TNController.DataFromCarType data = TNController.getSalesDataFromCarType(carType1Id);
+		System.assert(!data.error, 'Should not be errors');
+		System.assertEquals(data.auraMessage.title, 'Success', 'The dates must be the same');
+		System.assertEquals(data.auraMessage.status, 'success', 'The dates must be the same');
+		System.assertEquals(data.auraMessage.message, 'Ok', 'The dates must be the same');
 		System.assertEquals(comparator1.moreExpensiveDate, data.moreExpensiveDate, 'The dates must be the same');
 		System.assertEquals(comparator1.moreExpensiveLicense, data.moreExpensiveLicense, 'The licences must be the same');
 		System.assertEquals(comparator1.moreExpensiveSalePrice, data.moreExpensiveSalePrice, 'The prices must be the same');
@@ -65,11 +84,23 @@ public with sharing class CodeReviewTest {
 	@isTest
 	private static void returnDataFromType2 () {
 		TNController.DataFromCarType data = TNController.getSalesDataFromCarType(carType2Id);
+		System.assert(!data.error, 'Should not be errors');
+		System.assertEquals(data.auraMessage.title, 'Success', 'The dates must be the same');
+		System.assertEquals(data.auraMessage.status, 'success', 'The dates must be the same');
+		System.assertEquals(data.auraMessage.message, 'Ok', 'The dates must be the same');
 		System.assertEquals(comparator2.moreExpensiveDate, data.moreExpensiveDate, 'The dates must be the same');
 		System.assertEquals(comparator2.moreExpensiveLicense, data.moreExpensiveLicense, 'The licences must be the same');
 		System.assertEquals(comparator2.moreExpensiveSalePrice, data.moreExpensiveSalePrice, 'The prices must be the same');
 		System.assertEquals(comparator2.totalQuantity, data.totalQuantity, 'The quantity must be the same');
 		System.assertEquals(comparator2.totalMoneyRaised, data.totalMoneyRaised, 'The money must be the same');
+	}
+	@isTest
+	private static void ifNoDataReturnMessage () {
+		TNController.DataFromCarType data = TNController.getSalesDataFromCarType(carType3Id);
+		System.assert(data.error, 'Should be errors');
+		System.assertEquals(data.auraMessage.title, 'Warning', 'The dates must be the same');
+		System.assertEquals(data.auraMessage.status, 'warning', 'The dates must be the same');
+		System.assertEquals(data.auraMessage.message, System.Label.TNCarDealership_NoInfo, 'The dates must be the same');
 	}
 	/** Utils */
 	private static Date getRandomDate () {
