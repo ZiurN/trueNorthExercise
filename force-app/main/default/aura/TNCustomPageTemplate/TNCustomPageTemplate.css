@@ -1,0 +1,7 @@
+.THIS.customTN {
+	max-height: 79vh;
+	overflow: auto;
+}
+.THIS .customTNList{
+	overflow: auto;
+}

@@ -1,3 +1,4 @@
 <aura:event type="APPLICATION" description="Refresh event">
     <aura:attribute name="message" type="String" />
+	<aura:attribute name="carType" type="TNCarType__C" />
 </aura:event>

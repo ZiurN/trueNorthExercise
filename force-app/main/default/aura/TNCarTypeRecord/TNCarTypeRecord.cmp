@@ -2,6 +2,7 @@
                 access="global">
     <aura:attribute name="carId" type="String" default="" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	<aura:handler event="c:TNRefreshEvent" action="{!c.handleTNRefreshEvent}"/>
     <div>
         <lightning:recordViewForm recordId="{!v.carId}"
                                   objectApiName="TNCarType__c">
@@ -14,9 +15,6 @@
                 </div>
                  <div class="slds-col slds-size_1-of-8">
                     <lightning:outputField fieldName="TNBodyStyle__c" />
-                </div>
-                 <div class="slds-col slds-size_1-of-8">
-                    <lightning:outputField fieldName="TNCountry__c" />
                 </div>
             </div>
         </lightning:recordViewForm>

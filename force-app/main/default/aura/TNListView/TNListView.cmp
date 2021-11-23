@@ -1,22 +1,26 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:lightningQuickAction"
-                 access="global">
+                access="global"
+				controller="TNController">
+	<ltng:require styles="{!$Resource.tailwind}" />
     <aura:attribute name="carTypeList" type="TNCarType__C[]"/>
     <aura:attribute name="pageRefresh" type="boolean" default="true" />
     <aura:registerEvent name="refreshEvent" type="c:TNRefreshEvent"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <div>
-        <div>Car List</div>
-    </div>
-    <div class= "slds-scrollable_y" style="height:55rem">
-        <aura:iteration items="{!v.carTypeList}" var="carType" >
-            <div class="slds-grid" >
-                <div class="slds-col slds-size_1-of-4">
-                    <ui:outputRichText value="{!carType.TNCarBrand__c}"/>
-                </div>
-                <div class="slds-col slds-size_2-of-4">
-                    <lightning:button variant="base" label="{!carType.TNModel__c}" value="{!carType.Id}" title="{!carType.TNModel}" onclick="{! c.handleClick }"/>
-                </div>
-            </div>
-        </aura:iteration>
-    </div>
+	<nav class="bg-white rounded-md p-4 w-3/3 max-w-md" >
+		<h4 class="text-2xl font-bold border-b-4 mb-2 pb-2">Car List</h4>
+		<ul class="text-gray-600 divide-y text-sm">
+		<aura:iteration items="{!v.carTypeList}" var="carType" >
+			<li class="w-full grid grid-cols-2 text-left">
+				<span><ui:outputRichText value="{!carType.TNCarBrand__c}"/></span>
+				<lightning:button
+					class="text-left font-bold ml-2 hover:text-blue-700"
+					variant="base"
+					label="{!carType.TNModel__c}"
+					value="{!carType.Id}"
+					title="{!carType.TNModel}"
+					onclick="{!c.handleClick}"/>
+			</li>
+		</aura:iteration>
+		</ul>
+	</nav>
 </aura:component>

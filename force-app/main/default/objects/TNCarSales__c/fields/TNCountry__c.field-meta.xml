@@ -2,10 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TNCountry__c</fullName>
     <externalId>false</externalId>
-    <formula>TNCar__r.TNCarCountry__c</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>TN Country</label>
-    <required>false</required>
+    <length>255</length>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>

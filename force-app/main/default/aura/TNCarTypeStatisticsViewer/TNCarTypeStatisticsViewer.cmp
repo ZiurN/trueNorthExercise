@@ -1,0 +1,81 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:lightningQuickAction,force:hasRecordId"
+				access="global"
+				controller="TNController">
+	<aura:attribute name="carId" type="String" default="" />
+	<aura:attribute name="carType" type="String" default="" />
+	<aura:attribute name="dataFromCarType" type="Object" default="{}" />
+	<aura:attribute name="carSelected" type="Boolean" default="false" />
+	<aura:handler event="c:TNRefreshEvent" action="{!c.handleTNRefreshEvent}"/>
+	<lightning:layout  class="bg-white w-full rounded-md p-4" multipleRows="true">
+		<aura:if isTrue="{!v.carSelected}">
+			<lightning:layoutItem flexibility="auto" padding="around-small" size="12">
+				<h4 class="text-2xl font-bold border-b-4 mb-2 pb-2">{!v.carType.TNCarBrand__c + ' ' + v.carType.TNModel__c + ', 2019 Statistics'}</h4>
+			</lightning:layoutItem>
+			<lightning:layoutItem flexibility="auto" padding="around-small" size="6">
+				<lightning:layout  class="x-large" multipleRows="true">
+					<lightning:layoutItem flexibility="auto" padding="around-small" size="12">
+						<div class="mb-4">
+							<div class="block text-gray-700 text-base mb-2">
+								Total Sold Units:
+							</div>
+							<div class="block text-gray-700 text-lg font-bold mb-2">
+								{!v.dataFromCarType.totalQuantity}
+							</div>
+						</div>
+					</lightning:layoutItem>
+					<lightning:layoutItem flexibility="auto" padding="around-small" size="12">
+						<div class="mb-4">
+							<div class="block text-gray-700 text-base mb-2">
+								Total Money Raised:
+							</div>
+							<div class="block text-gray-700 text-lg font-bold mb-2">
+								<ui:outputCurrency value="{!v.dataFromCarType.totalMoneyRaised}"/>
+							</div>
+						</div>
+					</lightning:layoutItem>
+					<lightning:layoutItem flexibility="auto" padding="around-small" size="12">
+						<div class="mb-4">
+							<div class="block text-gray-700 text-base mb-2">
+								Most Expensive Sales Date:
+							</div>
+							<div class="block text-gray-700 text-lg font-bold mb-2">
+								<ui:outputDate value="{!v.dataFromCarType.moreExpensiveDate}" />
+							</div>
+						</div>
+					</lightning:layoutItem>
+				</lightning:layout>
+			</lightning:layoutItem>
+			<lightning:layoutItem flexibility="auto" padding="around-small" size="6">
+				<lightning:layout  class="x-large" multipleRows="true">
+					<lightning:layoutItem flexibility="auto" padding="around-small" size="12">
+						<div class="mb-4">
+							<div class="block text-gray-700 text-base mb-2">
+								Most Expensive Car License Plate:
+							</div>
+							<div class="block text-gray-700 text-lg font-bold mb-2">
+								{!v.dataFromCarType.moreExpensiveLicense}
+							</div>
+						</div>
+					</lightning:layoutItem>
+					<lightning:layoutItem flexibility="auto" padding="around-small" size="12">
+						<div class="mb-4">
+							<div class="block text-gray-700 text-base  mb-2">
+								Most Expensive Sales Price:
+							</div>
+							<div class="block text-gray-700 text-lg font-bold mb-2">
+								<ui:outputCurrency value="{!v.dataFromCarType.moreExpensiveSalePrice}"/>
+							</div>
+						</div>
+					</lightning:layoutItem>
+				</lightning:layout>
+			</lightning:layoutItem>
+			<aura:set attribute="else">
+				<lightning:layoutItem flexibility="auto" padding="around-small" size="12">
+					<div class="block text-gray-700 text-base mb-2">
+						Select a Car from the list
+					</div>
+				</lightning:layoutItem>
+			</aura:set>
+		</aura:if>
+	</lightning:layout>
+</aura:component>
