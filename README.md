@@ -1,18 +1,19 @@
-# Salesforce DX Project: Next Steps
+# TrueNorth Exercise.
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+In order to accomplish the requirement, this git repository has been created. Here you can find the Salesforce Metadata modified from the org [True North](https://site-data-6369-dev-ed.lightning.force.com).
 
-## How Do You Plan to Deploy Your Changes?
+### Description.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+The requirement ask for create a Salesforce App where the Users could check the statistics of different car types they choose from a determinated list.
 
-## Configure Your Salesforce DX Project
+To complete this requirement, it's created the Salesforce App **TN Car Dealership**.
+![THCarDealerShipGIF](https://i.ibb.co/tYmdvgs/ezgif-3-2d7a5b77ee2e.gif)
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+### About Bonus Exercise.
 
-## Read All About It
+The bonus exercise requires create a User with Profile equals to *Standard Platform User*, and Role equals to *TN USA Sales*. This user has the following Salesforce Credentials:
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+* UserName: jefryruiz@gmail.com.tn
+* Password: Salesforce2021
+
+If somewhat the app works well, and only shows information related to USA cars and Sales, the Apex Tests couldn´t check this behavior.
