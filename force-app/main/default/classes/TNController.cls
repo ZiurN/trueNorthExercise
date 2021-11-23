@@ -3,7 +3,7 @@ public class TNController {
 	public static List<TNCarType__c> getCarTypes(){
 		List<TNCarType__c> listToReturn;
 		try {
-			listToReturn = [SELECT TNBodyStyle__c, TNCarBrand__c, TNModel__c FROM TNCarType__c];
+			listToReturn = [SELECT TNBodyStyle__c, TNCarBrand__c, TNModel__c FROM TNCarType__c WITH SECURITY_ENFORCED];
 			return listToReturn;
 		} catch (Exception e) {
 			throw new AuraHandledException(e.getMessage());
@@ -11,7 +11,7 @@ public class TNController {
 	}
 	@AuraEnabled
 	public static DataFromCarType getSalesDataFromCarType(String Id) {
-		List<TNCarSales__c> sales = [SELECT TNPrice__c, TNDate__c, TNCarLicence__c FROM TNCarSales__c WHERE TNCar__r.TNCarType__c =: Id];
+		List<TNCarSales__c> sales = [SELECT TNPrice__c, TNDate__c, TNCarLicence__c FROM TNCarSales__c WHERE TNCar__r.TNCarType__c =: Id WITH SECURITY_ENFORCED];
 		return new DataFromCarType(sales);
 	}
 	public class DataFromCarType {
